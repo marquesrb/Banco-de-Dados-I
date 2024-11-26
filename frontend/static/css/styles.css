@@ -1,0 +1,297 @@
+/* Reset de margens e tamanhos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilização básica do HTML e body */
+body, html {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    overflow: auto;
+}
+
+/* Header fixo na lateral */
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px; /* Dimensão padrão */
+    height: 100%;
+    background-color: #061d36;
+    color: white;
+    z-index: 1000;
+}
+
+/* Container principal ajustável */
+.container-agenda{
+    margin-left: 250px; /* Espaço para o header */
+    padding: 20px;
+    width: calc(100% - 250px);
+    height: 100%;
+    overflow-y: auto;
+    color: #000000;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #f5f5f5;
+}
+
+.container-ficha{
+    margin: 30px 0;
+}
+
+/* Títulos */
+h1 {
+    text-align: center;
+    font-size: 24px;
+    color: #000000;
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 18px;
+    color: #000000;
+}
+
+/* Formulários */
+.form-group {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-dates, .filter-client {
+    display: flex;
+    gap: 20px; /* Espaçamento entre os elementos */
+    align-items: flex-end; /* Alinha o botão com a base dos inputs */
+    margin-bottom: 20px; /* Espaçamento abaixo do grupo */
+}
+
+.filter-dates .form-group {
+    width: 200px;
+}
+
+.filter-dates button.btn {
+    height: 100%; /* Faz o botão se alinhar com os inputs */
+}
+
+/* Estilos dos ícones de busca */
+button i.fas {
+    margin-right: 8px;
+}
+
+/* Botões */
+button.btn {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    align-self: flex-start;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button.btn:hover {
+    background-color: #45a049;
+}
+
+/* Tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 50px 0;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #444;
+    color: #fff;
+}
+
+tr:hover {
+    background-color: #c2d8f7;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#criar-agendamento, #criar-botao {
+    background-color: #061d36;
+}
+
+#criar-agendamento:hover {
+    color: #fff;
+}
+
+.pesquisa {
+    margin-top: 25px;
+    width: 30px;
+    height: 30px;
+    background:none;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+
+
+#buscar-historico-cliente i, #buscar-agendamentos i, #buscar-ficha-horarios i,
+#buscarHistorico i, #listarFornecedores i, #buscarFornecedores i, #buscar-vendas i {
+    color: rgb(3, 55, 168); /* Garantir que o ícone tenha a cor branca */
+    font-size: 16px; /* Ajuste o tamanho do ícone conforme necessário */
+}
+
+#buscar-ficha-banho-tosa{
+    background: none;
+    color: #730c2d;
+    width: 350px;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.ficha{
+    margin-top: 60px;
+}
+
+#form-criar-agendamento .form-group{
+    margin: 30px;
+}
+
+.container-agendamento {
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto; 
+    color: #000000;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-sizing: border-box;
+    scrollbar-width: none; 
+}
+
+.container-agendamento::-webkit-scrollbar {
+    width: 0px; /* Esconde a barra de rolagem */
+    background: transparent; 
+}
+
+#criar-botao{
+    border-radius: 50px;
+    padding: 8px 15px;
+    font-size: 14px; 
+    width: auto;       
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin: 30px auto;
+}
+
+.container-agendamento #form-agendamento {
+    color: #000000; /* Texto branco para contraste */
+    padding: 30px; /* Espaçamento interno */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza os itens do formulário */
+    width: 100%; /* Garante que ocupe toda a largura disponível */
+    max-width: 600px; /* Limita a largura máxima */
+    margin: auto;
+    box-shadow: #000000;
+}
+
+/*CLIENTE*/
+
+
+
+.container{
+    padding: 30px;
+}
+
+.container-fornecedor h1{
+    margin-bottom: 40px;
+}
+
+#listarClientesTosaVencida, #listarFornecedores {
+    background: none; 
+    border: none;
+    color: #762046;
+    font-size: 16px; 
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.2s; 
+    margin-top: 20px
+}
+
+#listarClientesTosaVencida:hover, #listarFornecedores {
+    color: #c43475;
+}
+
+.input-button-container {
+    display: flex;
+    flex-direction: column; /* Organiza os itens de cima para baixo */
+    gap: 10px;  /* Espaçamento entre o label e o contêiner de input+botão */
+}
+
+.input-btn-wrapper {
+    display: flex;
+    align-items: center; /* Alinha o input e o botão verticalmente no centro */
+    gap: 10px; /* Espaçamento entre o input e o botão */
+}
+
+/*Fornecedor*/
+
+#fornecedorId, #produtoId {
+    width: 300px; /* Largura do input */
+    height: 40px; /* Altura do input */
+    padding: 8px; /* Padding dentro do input */
+    font-size: 16px; /* Tamanho da fonte */
+    border-radius: 5px; /* Cantos arredondados */
+    border: 1px solid #ccc; /* Borda do input */
+}
+
+#buscarHistorico i, #buscarFornecedores i, #buscar-vendas i {
+    margin-bottom: 20px;
+}
+
+
+
+/* Vendas */
+
+.container-venda {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espaçamento entre as seções */
+}
+
+.container-venda .form-group{
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+.container-venda .form-vendas{
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+
+
+

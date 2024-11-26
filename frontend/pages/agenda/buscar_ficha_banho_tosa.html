@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetHub - Agenda</title>
+    <link rel="stylesheet" href="../../components/header/styles.css">
+    <link rel="stylesheet" href="../../static/css/styles.css">
+    <!-- Link para os ícones do Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header será carregado aqui -->
+    <script src="/components/header/header.js"></script>
+    <div id="header"></div>
+    
+    <div class="container-ficha container">
+        <h1>Ficha de Horários do Funcionário</h1>
+
+        <!-- Filtro de ficha de horários por funcionário -->
+        <div class="filter-client ficha">
+            <div class="form-group">
+                <label for="funcionario-id">Código do Funcionário:</label>
+                <input type="text" id="funcionario-id" class="form-control" placeholder="Digite o ID do funcionário">
+            </div>
+                <button id="buscar-ficha-horarios" class="pesquisa">
+                    <i class="fas fa-search"></i> <!-- Ícone de lupa -->
+                </button>
+        </div>
+        
+
+        <!-- Tabela de Ficha de Horários do Funcionário -->
+        <table id="ficha-horarios-tabela">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Horário</th>
+                    <th>Cliente</th>
+                    <th>Pet</th>
+                    <th>Tipo de Serviço</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- As linhas da tabela serão preenchidas com JavaScript -->
+            </tbody>
+        </table>
+
+    </div>
+
+    <script src="../../static/js/buscar_ficha.js"></script>
+</body>
+
+</html>

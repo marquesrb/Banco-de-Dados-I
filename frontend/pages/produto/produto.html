@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetHub - Agenda</title>
+    <link rel="stylesheet" href="../../components/header/styles.css">
+    <link rel="stylesheet" href="../../static/css/styles.css">
+    <!-- Link para os ícones do Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Header será carregado aqui -->
+    <script src="/components/header/header.js"></script>
+    <div id="header"></div>
+
+    <div class="container container-produto">
+        <h1>Lista de Produtos</h1>
+
+        <!-- Filtro de Produtos -->
+        <div>
+            <label for="filtro">Filtrar por nome:</label>
+            <input type="text" id="filtro" placeholder="Digite o nome do produto">
+        </div>
+        <!-- Tabela de Produtos -->
+        <table id="produtos-tabela">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Preço de Venda</th>
+                    <th>Quantidade Disponível</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- As linhas da tabela serão preenchidas com JavaScript -->
+            </tbody>
+        </table>
+
+         <!-- Filtro de Fornecedores para um Produto -->
+        <div class="input-button-container">
+            <label for="produtoId">Buscar fornecedores para o produto:</label>
+            <div class="input-btn-wrapper">
+                <input type="number" id="produtoId" placeholder="Digite o ID do produto">
+                <button id="buscarFornecedores" class="pesquisa">
+                    <i class="fas fa-search"></i> <!-- Ícone de lupa -->
+                </button>
+            </div>
+        </div>
+
+
+        <!-- Tabela de Fornecedores do Produto -->
+        <table id="fornecedores-produto-tabela">
+            <thead>
+                <tr>
+                    <th>Fornecedor</th>
+                    <th>Quantidade Fornecida</th>
+                    <th>Data de Fornecimento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Os dados de fornecedores serão preenchidos aqui -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        let produtos = [];  
+
+        
+        function filtrarProdutos() {
+            const filtro = document.getElementById("filtro").value.toLowerCase();
+
+          
+            const produtosFiltrados = produtos.filter(produto => 
+                produto.nome.toLowerCase().includes(filtro)
+            );
+
+         
+            atualizarTabela(produtosFiltrados);
+        }
+
+        
+        function atualizarTabela(produtos) {
+            const tabela = document.getElementById("produtos-tabela").getElementsByTagName('tbody')[0];
+            tabela.innerHTML = '';  
+
+            produtos.forEach(produto => {
+                const row = tabela.insertRow();
+                row.insertCell(0).textContent = produto.id;
+                row.insertCell(1).textContent = produto.nome;
+                row.insertCell(2).textContent = produto.preco_venda;
+                row.insertCell(3).textContent = produto.quantidade_disponivel;
+            });
+        }
+
+        function buscarFornecedoresProduto() {
+            const produtoId = document.getElementById("produtoId").value.trim();
+            
+            if (!produtoId) {
+                alert("Por favor, insira o ID do produto.");
+                return;
+            }
+
+            fetch(`http://127.0.0.1:8000/produtos/fornecedores/${produtoId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Erro ao carregar os fornecedores para o produto.");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const historicoFornecedores = data.historico || [];
+                    atualizarTabelaFornecedores(historicoFornecedores);
+                })
+                .catch(error => {
+                    console.error("Erro ao buscar fornecedores:", error);
+                    alert("Ocorreu um erro ao carregar os fornecedores.");
+                });
+        }
+
+        function atualizarTabelaFornecedores(historicoFornecedores) {
+            const tabela = document.getElementById("fornecedores-produto-tabela").getElementsByTagName('tbody')[0];
+            tabela.innerHTML = ''; 
+
+            if (historicoFornecedores.length === 0) {
+                const row = tabela.insertRow();
+                row.insertCell(0).textContent = "Nenhum fornecedor encontrado para este produto.";
+                row.insertCell(1).textContent = "";
+                row.insertCell(2).textContent = "";
+            } else {
+                historicoFornecedores.forEach(fornecedor => {
+                    const row = tabela.insertRow();
+                    row.insertCell(0).textContent = fornecedor.fornecedor_nome;
+                    row.insertCell(1).textContent = fornecedor.quantidade_fornecida;
+                    row.insertCell(2).textContent = fornecedor.data_fornecimento;
+                });
+            }
+        }
+
+   
+        document.getElementById("buscarFornecedores").addEventListener("click", buscarFornecedoresProduto);
+
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('http://127.0.0.1:8000/produtos')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Erro ao carregar os produtos.");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    produtos = data;  
+                    atualizarTabela(produtos);  
+                })
+                .catch(error => {
+                    console.error("Erro ao listar os produtos:", error);
+                    alert("Ocorreu um erro ao listar os produtos.");
+                });
+
+            document.getElementById("filtro").addEventListener("input", filtrarProdutos);
+        });
+    </script>
+</body>
+</html>

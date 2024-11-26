@@ -1,0 +1,32 @@
+/* Estilo do menu lateral fixo */
+.menu-lateral {
+    width: 250px;
+    height: 100vh;
+    background-color: #061d36;
+    padding-top: 1rem;
+}
+
+/* Links do menu */
+.menu-lateral .nav-link {
+    color: white;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+}
+
+.menu-lateral .nav-link:hover {
+    background-color: #0a294a;
+    color: white;
+}
+
+/* Título do menu */
+.menu-lateral h5 {
+    color: white;
+    margin-bottom: 0;
+    border-bottom: 1px solid #363636;
+}
+
+.logo{
+    max-width: 100px;
+    margin: 20px auto;
+    border-radius: 20%;
+}

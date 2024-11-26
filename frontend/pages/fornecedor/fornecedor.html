@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetHub - Agenda</title>
+    <link rel="stylesheet" href="../../components/header/styles.css">
+    <link rel="stylesheet" href="../../static/css/styles.css">
+    <!-- Link para os ícones do Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Header será carregado aqui -->
+    <script src="/components/header/header.js"></script>
+    <div id="header"></div>
+
+    <div class="container container-fornecedor">
+        <h1>Histórico de Produtos Fornecidos</h1>
+
+        <!-- Filtro de Fornecedor -->
+        <div class="input-button-container">
+            <label for="fornecedorId">Código do Fornecedor (CNPJ ou ID):</label>
+            <div class="input-btn-wrapper">
+                <input type="text" id="fornecedorId" placeholder="Digite o código do fornecedor">
+                <button id="buscarHistorico" class="pesquisa">
+                    <i class="fas fa-search"></i> <!-- Ícone de lupa -->
+                </button>
+            </div>
+        </div>
+        
+
+        <!-- Tabela de Histórico de Produtos Fornecidos -->
+        <table id="produtos-fornecidos-tabela">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Quantidade Fornecida</th>
+                    <th>Data de Fornecimento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- As linhas da tabela serão preenchidas com JavaScript -->
+            </tbody>
+        </table>
+
+        <!-- Seção para Listar Todos os Fornecedores -->
+        <h2>Lista de Fornecedores</h2>
+            <button id="listarFornecedores">Listar Fornecedores</button>
+        </button>
+        <table id="fornecedores-tabela">
+            <thead>
+                <tr>
+                    <th>ID do Fornecedor (CNPJ)</th>
+                    <th>Razão Social</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- A lista de fornecedores será preenchida com JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Função para buscar o histórico de produtos fornecidos por um fornecedor
+        function buscarHistoricoProdutosFornecido() {
+            const fornecedorId = document.getElementById("fornecedorId").value.trim();
+            
+            if (!fornecedorId) {
+                alert("Por favor, insira o ID do fornecedor.");
+                return;
+            }
+
+            // Fazer requisição ao backend para obter o histórico de produtos fornecidos
+            fetch(`http://127.0.0.1:8000/fornecedores?fornecedor_id=${fornecedorId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Erro ao carregar os produtos fornecidos.");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const historicoProdutos = data.historico || [];
+                    atualizarTabelaHistorico(historicoProdutos);  
+                })
+                .catch(error => {
+                    console.error("Erro ao buscar o histórico de produtos fornecidos:", error);
+                    alert("Ocorreu um erro ao carregar o histórico de produtos fornecidos.");
+                });
+        }
+
+        // Função para atualizar a tabela de histórico de produtos fornecidos
+        function atualizarTabelaHistorico(historicoProdutos) {
+            const tabela = document.getElementById("produtos-fornecidos-tabela").getElementsByTagName('tbody')[0];
+            tabela.innerHTML = ''; 
+
+            historicoProdutos.forEach(produto => {
+                const row = tabela.insertRow();
+                row.insertCell(0).textContent = produto.produto_nome;
+                row.insertCell(1).textContent = produto.quantidade_fornecida;
+                row.insertCell(2).textContent = produto.data_fornecimento;
+            });
+        }
+
+        // Função para listar todos os fornecedores
+        function listarFornecedores() {
+            fetch("http://127.0.0.1:8000/fornecedores/lista")
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Erro ao carregar a lista de fornecedores.");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const fornecedores = data.fornecedores || [];
+                    atualizarTabelaFornecedores(fornecedores);  
+                })
+                .catch(error => {
+                    console.error("Erro ao buscar a lista de fornecedores:", error);
+                    alert("Ocorreu um erro ao carregar a lista de fornecedores.");
+                });
+        }
+
+        // Função para atualizar a tabela de fornecedores
+        function atualizarTabelaFornecedores(fornecedores) {
+            const tabela = document.getElementById("fornecedores-tabela").getElementsByTagName('tbody')[0];
+            tabela.innerHTML = ''; 
+
+            fornecedores.forEach(fornecedor => {
+                const row = tabela.insertRow();
+                row.insertCell(0).textContent = fornecedor.fornecedor_id;
+                row.insertCell(1).textContent = fornecedor.fornecedor_nome;
+            });
+        }
+
+      
+        document.getElementById("buscarHistorico").addEventListener("click", buscarHistoricoProdutosFornecido);
+        
+    
+        document.getElementById("listarFornecedores").addEventListener("click", listarFornecedores);
+    </script>
+</body>
+</html>
