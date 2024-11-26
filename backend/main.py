@@ -8,7 +8,9 @@ from rotas.cliente import clientes_blueprint
 from rotas.fornecedor import fornecedores_blueprint
 from rotas.agendamento import agendamentos_blueprint
 
-app = Flask(__name__)
+
+app = Flask(__name__, template_folder='../frontend/pages')
+
 
 CORS(app, origins="*")
 

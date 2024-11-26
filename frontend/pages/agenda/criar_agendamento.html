@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetHub - Criar Agendamento</title>
+    <link rel="stylesheet" href="../../components/header/styles.css">
+    <link rel="stylesheet" href="../../static/css/styles.css">
+</head>
+
+<body>
+    <!-- Header será carregado aqui -->
+    <script src="/components/header/header.js"></script>
+    <div id="header"></div>
+    
+    <div class="container-agendamento container ">
+        <h1>Criar Agendamento</h1>
+
+        <!-- Formulário para criar agendamento -->
+        <form id="form-criar-agendamento">
+            <div id="form-agendamento">
+            <div class="form-group">
+                <label for="tipo">Tipo de Serviço:</label>
+                <select id="tipo" class="form-control">
+                    <option value="Banho">Banho</option>
+                    <option value="Tosa">Tosa</option>
+                    <option value="Banho e Tosa">Banho e Tosa</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="preco">Preço:</label>
+                <input type="number" id="preco" class="form-control" placeholder="Preço" required>
+            </div>
+
+            <div class="form-group">
+                <label for="status">Status:</label>
+                <select id="status" class="form-control">
+                    <option value="Agendado">Agendado</option>
+                    <option value="Concluído">Concluído</option>
+                    <option value="Cancelado">Cancelado</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="data">Data do Serviço:</label>
+                <input type="date" id="data" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="horario">Horário do Serviço:</label>
+                <input type="time" id="horario" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="idCaixa">Código do Caixa:</label>
+                <input type="text" id="idCaixa" class="form-control" placeholder="ID do Caixa" required>
+            </div>
+
+            <div class="form-group">
+                <label for="idPet">Código do Pet:</label>
+                <input type="text" id="idPet" class="form-control" placeholder="ID do Pet" required>
+            </div>
+
+            <div class="form-group">
+                <label for="idBanhista">Código do Banhista:</label>
+                <input type="text" id="idBanhista" class="form-control" placeholder="ID do Banhista" required>
+            </div>
+
+            <button id="criar-botao" type="submit" class="btn">Criar Agendamento</button>
+        </div>
+        </form>
+        
+        <div id="msg-sucesso" class="alert alert-success" style="display: none;">
+            Agendamento criado com sucesso!
+        </div>
+        <div id="msg-erro" class="alert alert-danger" style="display: none;">
+            Ocorreu um erro ao criar o agendamento.
+        </div>
+    </div>
+
+    <script src="../../static/js/criar_agendamento.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetHub - Clientes</title>
+    <link rel="stylesheet" href="../../components/header/styles.css">
+    <link rel="stylesheet" href="../../static/css/styles.css">
+</head>
+
+<body>
+    <!-- Header será carregado aqui -->
+    <script src="/components/header/header.js"></script>
+    <div id="header"></div>
+    
+    <div class="container container-cliente">
+        <h1>Clientes com Tosas Vencidas</h1>
+        
+        <!-- Botão para listar clientes com tosas vencidas -->
+        <button id="listarClientesTosaVencida">Listar Clientes com Tosas Vencidas</button>
+
+        <!-- Tabela para exibir os clientes com tosas vencidas -->
+        <table id="clientes-tosa-vencida-tabela">
+            <thead>
+                <tr>
+                    <th>CPF Cliente</th>
+                    <th>Nome Cliente</th>
+                    <th>Telefone Cliente</th>
+                    <th>ID do Pet</th>
+                    <th>Nome do Pet</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- As linhas da tabela serão preenchidas com JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Função para listar clientes com tosas vencidas
+        function listarClientesComTosaVencida() {
+            fetch("http://127.0.0.1:8000/clientes/vencidos")
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Erro ao carregar os clientes com tosa vencida.");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const clientes = data.clientes || [];
+                    atualizarTabelaClientesTosaVencida(clientes);  
+                })
+                .catch(error => {
+                    console.error("Erro ao buscar clientes com tosa vencida:", error);
+                    alert("Ocorreu um erro ao carregar os clientes com tosa vencida.");
+                });
+        }
+
+        // Função para atualizar a tabela de clientes com tosas vencidas
+        function atualizarTabelaClientesTosaVencida(clientes) {
+            const tabela = document.getElementById("clientes-tosa-vencida-tabela").getElementsByTagName('tbody')[0];
+            tabela.innerHTML = '';  
+
+            clientes.forEach(cliente => {
+                const row = tabela.insertRow();
+                row.insertCell(0).textContent = cliente.cpf_cliente;
+                row.insertCell(1).textContent = cliente.nome_cliente;
+                row.insertCell(2).textContent = cliente.telefone_cliente;
+                row.insertCell(3).textContent = cliente.id_pet;
+                row.insertCell(4).textContent = cliente.nome_pet;
+            });
+        }
+
+        document.getElementById("listarClientesTosaVencida").addEventListener("click", listarClientesComTosaVencida);
+    </script>
+</body>
+
+</html>

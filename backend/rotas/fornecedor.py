@@ -24,3 +24,15 @@ def get_historico_produtos_fornecedor():
         return jsonify({"historico": historico}), 200
     except Exception as e:
         return jsonify({"erro": "Erro ao processar a solicitação", "detalhes": str(e)}), 500
+
+@fornecedores_blueprint.route("/fornecedores/lista", methods=["GET"])
+def listar_fornecedores():
+    try:
+        fornecedores = fornecedor_db.listar_todos_fornecedores()
+        
+        if not fornecedores:
+            return jsonify({"mensagem": "Nenhum fornecedor encontrado."}), 404
+        
+        return jsonify({"fornecedores": fornecedores}), 200
+    except Exception as e:
+        return jsonify({"erro": "Erro ao processar a solicitação", "detalhes": str(e)}), 500

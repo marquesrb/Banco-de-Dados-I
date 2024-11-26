@@ -36,3 +36,19 @@ class FornecedorDatabase:
         except Exception as e:
             print(f"Erro ao buscar histórico de produtos: {e}")
             return []
+
+    def listar_todos_fornecedores(self):
+        query = """
+            SELECT 
+                f.cnpj AS fornecedor_id,
+                f.razao_social AS fornecedor_nome
+            FROM 
+                Fornecedor f;
+        """
+        try:
+            fornecedores = self.db.execute_select_all(query)
+            
+            return fornecedores
+        except Exception as e:
+            print(f"Erro ao listar fornecedores: {e}")
+            return [] 

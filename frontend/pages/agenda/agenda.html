@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetHub - Agenda</title>
+    <link rel="stylesheet" href="../../components/header/styles.css">
+    <link rel="stylesheet" href="../../static/css/styles.css">
+    <!-- Link para os ícones do Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header será carregado aqui -->
+    <script src="/components/header/header.js"></script>
+    <div id="header"></div>
+    
+    <div class="container-agenda">
+        <h1>Agenda</h1>
+
+        <!-- Botão para criar agendamento -->
+        <div class="button-container">
+            <button id="criar-agendamento" class="btn">Criar Agendamento</button>
+        </div>
+        
+        <!-- Filtro de agendamentos por data -->
+        <h2>Filtrar Agendamentos</h2>
+        <div class="filter-dates">
+            <div class="form-group">
+                <label for="data-inicio">Data Início:</label>
+                <input type="date" id="data-inicio" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="data-fim">Data Fim:</label>
+                <input type="date" id="data-fim" class="form-control">
+            </div>
+            <button id="buscar-agendamentos" class="pesquisa">
+                <i class="fas fa-search"></i> <!-- Ícone de lupa -->
+            </button>
+        </div>
+        
+        <!-- Tabela de Histórico de Agendamentos -->
+        <table id="agendamentos-tabela">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Horário</th>
+                    <th>Funcionário</th>
+                    <th>Preço</th>
+                    <th>Tipo de Serviço</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- As linhas da tabela serão preenchidas com JavaScript -->
+            </tbody>
+        </table>
+
+        <!-- Filtro de agendamentos por cliente -->
+        <h2>Filtrar Agendamentos por Cliente</h2>
+        <div class="filter-client">
+            <div class="form-group">
+                <label for="cliente-id">Código do Cliente:</label>
+                <input type="text" id="cliente-id" class="form-control" placeholder="Digite o CPF do cliente">
+            </div>
+            <button id="buscar-historico-cliente" class="pesquisa">
+                <i class="fas fa-search"></i> <!-- Ícone de lupa -->
+            </button>
+        </div>
+    
+        <!-- Tabela de Histórico por Cliente -->
+        <table id="historico-cliente-tabela">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Horário</th>
+                    <th>Pet</th>
+                    <th>Preço</th>
+                    <th>Status</th>
+                    <th>Tipo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Linhas da tabela serão preenchidas com JavaScript -->
+            </tbody>
+        </table>
+        
+        <button id="buscar-ficha-banho-tosa" class="btn">Buscar Ficha de Banho e Tosa do Funcionário</button>
+    </div>
+
+    <script src="../../static/js/agenda.js"></script>
+</body>
+
+</html>

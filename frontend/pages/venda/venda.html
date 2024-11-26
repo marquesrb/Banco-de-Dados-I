@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetHub - Agenda</title>
+    <link rel="stylesheet" href="../../components/header/styles.css">
+    <link rel="stylesheet" href="../../static/css/styles.css">
+    <!-- Link para os ícones do Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header será carregado aqui -->
+    <script src="/components/header/header.js"></script>
+    <div id="header"></div>
+    
+    <div class="container container-venda">
+        <h1>Vendas</h1>
+
+        <!-- Filtros -->
+
+        <div class="form-vendas">
+
+        <div class="form-group">
+            <label for="produto">Produto:</label>
+            <select id="produto" class="form-control">
+                <option value="">Selecione um produto</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="data-inicio">Data Início:</label>
+            <input type="date" id="data-inicio" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="data-fim">Data Fim:</label>
+            <div class="input-button-group">
+                <input type="date" id="data-fim" class="form-control">
+            </div>
+        </div>
+        <button id="buscar-vendas" class="pesquisa">
+            <i class="fas fa-search"></i> <!-- Ícone de lupa -->
+        </button>
+    </div>
+
+        <!-- Tabela de Vendas -->
+        <div id="tabela-vendas">
+            <h2>Resultados</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Cliente</th>
+                        <th>Quantidade</th>
+                        <th>Total (R$)</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Os dados serão preenchidos dinamicamente -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="../../static/js/venda.js"></script>
+</body>
+
+</html>
