@@ -1,0 +1,101 @@
+﻿@model prjGura.Models.Servico
+
+@{
+    ViewData["Title"] = "Editar Serviço";
+}
+
+<div class="container mt-4">
+    <h1>@ViewData["Title"]</h1>
+    <h4>Editar Serviço</h4>
+    <hr />
+
+    <!-- Formulário de Edição -->
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <input type="hidden" asp-for="Idservico" />
+
+                <!-- Tipo -->
+                <div class="form-group">
+                    <label asp-for="Tipo" class="control-label"></label>
+                    <input asp-for="Tipo" class="form-control" />
+                    <span asp-validation-for="Tipo" class="text-danger"></span>
+                </div>
+
+                <!-- Preço -->
+                <div class="form-group">
+                    <label asp-for="Preco" class="control-label"></label>
+                    <input asp-for="Preco" class="form-control" />
+                    <span asp-validation-for="Preco" class="text-danger"></span>
+                </div>
+
+                <!-- Data -->
+                <div class="form-group">
+                    <label asp-for="Data" class="control-label"></label>
+                    <input asp-for="Data" class="form-control" />
+                    <span asp-validation-for="Data" class="text-danger"></span>
+                </div>
+
+                <!-- Horário -->
+                <div class="form-group">
+                    <label asp-for="Horario" class="control-label"></label>
+                    <input asp-for="Horario" class="form-control" />
+                    <span asp-validation-for="Horario" class="text-danger"></span>
+                </div>
+
+                <!-- Status -->
+                <div class="form-group">
+                    <label asp-for="Status" class="control-label"></label>
+                    <input asp-for="Status" class="form-control" />
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+
+                <!-- Id Caixa -->
+                <div class="form-group">
+                    <label asp-for="Idcaixa" class="control-label"></label>
+                    <select asp-for="Idcaixa" class="form-control" asp-items="ViewBag.Idcaixa"></select>
+                    <span asp-validation-for="Idcaixa" class="text-danger"></span>
+                </div>
+
+                <!-- Id Pet -->
+                <div class="form-group">
+                    <label asp-for="Idpet" class="control-label"></label>
+                    <select asp-for="Idpet" class="form-control" asp-items="ViewBag.Idpet"></select>
+                    <span asp-validation-for="Idpet" class="text-danger"></span>
+                </div>
+
+                <!-- Id Banhista -->
+                <div class="form-group">
+                    <label asp-for="Idbanhista" class="control-label"></label>
+                    <select asp-for="Idbanhista" class="form-control" asp-items="ViewBag.Idbanhista"></select>
+                    <span asp-validation-for="Idbanhista" class="text-danger"></span>
+                </div>
+
+                <!-- Id Venda -->
+                <div class="form-group">
+                    <label asp-for="Idvenda" class="control-label"></label>
+                    <select asp-for="Idvenda" class="form-control" asp-items="ViewBag.Idvenda"></select>
+                    <span asp-validation-for="Idvenda" class="text-danger"></span>
+                </div>
+
+                <!-- Botão de Submissão -->
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Link de Voltar -->
+    <div class="mt-3">
+        <a asp-action="Index" class="btn btn-secondary">Voltar para a lista</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

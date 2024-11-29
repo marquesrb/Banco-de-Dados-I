@@ -1,0 +1,74 @@
+﻿@model prjGura.Models.Servico
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Servico</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Idservico" class="control-label"></label>
+                <input asp-for="Idservico" class="form-control" />
+                <span asp-validation-for="Idservico" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tipo" class="control-label"></label>
+                <input asp-for="Tipo" class="form-control" />
+                <span asp-validation-for="Tipo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Preco" class="control-label"></label>
+                <input asp-for="Preco" class="form-control" />
+                <span asp-validation-for="Preco" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Data" class="control-label"></label>
+                <input asp-for="Data" class="form-control" />
+                <span asp-validation-for="Data" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Horario" class="control-label"></label>
+                <input asp-for="Horario" class="form-control" />
+                <span asp-validation-for="Horario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Idcaixa" class="control-label"></label>
+                <select asp-for="Idcaixa" class ="form-control" asp-items="ViewBag.Idcaixa"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Idpet" class="control-label"></label>
+                <select asp-for="Idpet" class ="form-control" asp-items="ViewBag.Idpet"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Idbanhista" class="control-label"></label>
+                <select asp-for="Idbanhista" class ="form-control" asp-items="ViewBag.Idbanhista"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Idvenda" class="control-label"></label>
+                <select asp-for="Idvenda" class ="form-control" asp-items="ViewBag.Idvenda"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

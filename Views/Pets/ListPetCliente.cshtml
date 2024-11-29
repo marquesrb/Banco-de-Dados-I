@@ -1,0 +1,48 @@
+﻿@model IEnumerable<prjGura.ViewModel.PetsViewModel>
+
+@{
+    ViewData["Title"] = "Listagem de Pet";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nome
+            </th>
+            <th>
+                Nome Do Cliente
+            </th>
+            <th>
+                Última Ida
+            </th>
+            <th>
+                Raça
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeCliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UltimaIda)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Raca)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a class="nav-link text-dark" asp-area="" asp-controller="Clientes" asp-action="Index">Voltar</a>
+</div>

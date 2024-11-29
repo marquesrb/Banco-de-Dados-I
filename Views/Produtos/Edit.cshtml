@@ -1,0 +1,47 @@
+﻿@model prjGura.Models.Produto
+
+@{
+    ViewData["Title"] = "Editar Produto";
+}
+
+<div class="container mt-4">
+    <hr />
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <!-- Id do Produto (Hidden) -->
+                <input type="hidden" asp-for="Id" />
+
+                <!-- Nome do Produto -->
+                <div class="form-group">
+                    <label asp-for="Nome" class="control-label"></label>
+                    <input asp-for="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+
+                <!-- Preço de Venda -->
+                <div class="form-group">
+                    <label asp-for="PrecoVenda" class="control-label"></label>
+                    <input asp-for="PrecoVenda" class="form-control" />
+                    <span asp-validation-for="PrecoVenda" class="text-danger"></span>
+                </div>
+
+                <!-- Botão de Submissão -->
+                <div class="form-group">
+                    <input type="submit" value="Salvar Produto" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Link de Voltar -->
+    <div class="mt-3">
+        <a asp-action="Index" class="btn btn-secondary">Voltar para Lista</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

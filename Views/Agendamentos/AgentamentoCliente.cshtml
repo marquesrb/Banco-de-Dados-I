@@ -1,0 +1,54 @@
+﻿@model prjGura.Models.Vendum
+
+@{
+    ViewData["Title"] = "AgendamentoCliente";
+}
+
+<h1>Details</h1>
+
+<div class="mb-3">
+    <form asp-action="AgendamentoCliente" method="get">
+        <div class="row">
+
+            <div class="col-md-4">
+                <input type="text" name="id" placeholder="Cpf Cliente.." class="form-control" />
+            </div>
+
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary mt-4">Filtrar</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div>
+    <h4>Servico</h4>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Valortotal)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Data)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Servicos)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Idbanhista)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Preco)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Data)
+                    </td>
+                </tr>
+            }

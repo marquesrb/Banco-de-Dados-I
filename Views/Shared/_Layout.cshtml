@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PetHub</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar {
+            height: 100vh;
+            position: fixed;
+            background-color: #f8f9fa; /* Cor neutra */
+            border-right: 1px solid #dee2e6; /* Linha de separação */
+            padding-top: 20px;
+        }
+
+            .sidebar .nav-link {
+                color: #495057; /* Cinza escuro para os links */
+                font-weight: 500;
+            }
+
+                .sidebar .nav-link:hover {
+                    color: #212529; /* Cinza mais escuro para hover */
+                    background-color: #e9ecef; /* Fundo suave no hover */
+                    border-radius: 5px;
+                }
+
+        .main-content {
+            margin-left: 250px; /* Largura fixa do menu lateral */
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="sidebar d-flex flex-column align-items-start p-3">
+            <a class="navbar-brand mb-4" href="#" style="font-weight: bold; font-size: 1.5rem;">PetHub</a>
+            <ul class="nav flex-column w-100">
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Clientes" asp-action="Index">Clientes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Funcionarios" asp-action="Index">Funcionários</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Produtos" asp-action="Index">Produtos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Produtos" asp-action="Vendas">Vendas</a>
+                </li>
+                <li class="nav-item">
+                    <div class="dropdown w-100">
+                        <button class="btn btn-outline-secondary dropdown-toggle w-100 text-start"
+                                type="button"
+                                id="dropdownMenuButton"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            Agendamento
+                        </button>
+                        <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="Agendamentos" asp-action="Index">Geral</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="Vendas" asp-action="Index">Cliente</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Estoque" asp-action="Index">Estoque</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Fornecedors" asp-action="Index">Fornecedores</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main-content">
+        <div class="container">
+            <div class="pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">@ViewData["Title"]</h1>
+            </div>
+            <div>
+                @RenderBody()
+            </div>
+        </div>
+    </main>
+    <footer class="border-top footer text-muted mt-auto">
+        <div class="container">
+            &copy; 2024 - PetHub
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

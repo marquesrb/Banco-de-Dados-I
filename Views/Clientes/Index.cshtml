@@ -1,0 +1,55 @@
+﻿@model IEnumerable<prjGura.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Lista de Clientes";
+}
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <a asp-action="Create" class="btn btn-primary">Adicionar Novo Cliente</a>
+    </div>
+
+    <table class="table table-striped table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Cpf)</th>
+                <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                <th>@Html.DisplayNameFor(model => model.Telefone)</th>
+                <th>@Html.DisplayNameFor(model => model.QuantidadePets)</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="5" class="text-center text-muted">Nenhum cliente encontrado.</td>
+                </tr>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Cpf)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Telefone)</td>
+                        <td>
+                            <a class="btn btn-info btn-sm text-white"
+                               asp-area="" asp-controller="Pets"
+                               asp-action="ListPetCliente"
+                               asp-route-id="@item.Cpf">
+                                @Html.DisplayFor(modelItem => item.QuantidadePets)
+                            </a>
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Cpf" class="btn btn-warning btn-sm">Editar</a>
+                            <a asp-action="Details" asp-route-id="@item.Cpf" class="btn btn-secondary btn-sm">Detalhes</a>
+                            <a asp-action="Delete" asp-route-id="@item.Cpf" class="btn btn-danger btn-sm">Excluir</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

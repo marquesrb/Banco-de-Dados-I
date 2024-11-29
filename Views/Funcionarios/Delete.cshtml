@@ -1,0 +1,73 @@
+﻿@model prjGura.Models.Funcionario
+
+@{
+    ViewData["Title"] = "Deletar Funcionário";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h4>Tem certeza de que deseja excluir este Funcionário?</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Nome)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Nome)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Endereco)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Endereco)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Telefone)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Telefone)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Turno)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Turno)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Salario)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Salario)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Cargo)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Cargo)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Cpfsupervisiona)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Cpfsupervisiona)
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <form asp-action="Delete" class="mt-3">
+        <input type="hidden" asp-for="Cpf" />
+        <div class="form-group">
+            <button type="submit" class="btn btn-danger">Deletar</button>
+            <a asp-action="Index" class="btn btn-secondary">Voltar à Lista</a>
+        </div>
+    </form>
+</div>

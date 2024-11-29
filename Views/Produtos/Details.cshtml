@@ -1,0 +1,72 @@
+﻿@model prjGura.Models.Produto
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container mt-4">
+
+    <!-- Informações do Produto -->
+    <div>
+        <h4>Produto</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PrecoVenda)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PrecoVenda)
+            </dd>
+        </dl>
+    </div>
+
+    <!-- Informações dos Fornecedores -->
+    <div>
+        <h4>Fornecedores</h4>
+        <hr />
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        CNPJ
+                    </th>
+                    <th>
+                        Preço de Custo
+                    </th>
+                    <th>
+                        Data
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Produtosfornecidos)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Idfornecedor)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PrecoCusto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Data)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Links de Navegação -->
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning">Edit</a> |
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<prjGura.ViewModel.VendasViewModel>
+
+@{
+    ViewData["Title"] = "Vendas";
+}
+
+<div class="container mt-4">
+
+    <!-- Botão Criar Novo -->
+    <div class="mb-3">
+        <a asp-action="Create" class="btn btn-primary">Criar Nova Venda</a>
+    </div>
+
+    <!-- Filtro de Vendas -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <form asp-action="Vendas" method="get">
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <input type="text" name="nomeProd" placeholder="Nome do Produto..." class="form-control" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <input type="date" name="dtaIni" class="form-control" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <input type="date" name="dtaFim" class="form-control" />
+                    </div>
+
+                    <div class="col-md-4 mt-4">
+                        <button type="submit" class="btn btn-primary">Filtrar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tabela de Vendas -->
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <table class="table table-striped table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.ProdutoNome)</th>
+                        <th>@Html.DisplayNameFor(model => model.ClienteNome)</th>
+                        <th>@Html.DisplayNameFor(model => model.DataVenda)</th>
+                        <th>@Html.DisplayNameFor(model => model.QuantidadeVendida)</th>
+                    
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(ViewModel => item.ProdutoNome)</td>
+                            <td>@Html.DisplayFor(ViewModel => item.ClienteNome)</td>
+                            <td>@Html.DisplayFor(ViewModel => item.DataVenda)</td>
+                            <td>@Html.DisplayFor(ViewModel => item.QuantidadeVendida)</td>
+                           
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
